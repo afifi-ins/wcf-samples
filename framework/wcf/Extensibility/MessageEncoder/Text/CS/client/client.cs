@@ -3,6 +3,10 @@
 //----------------------------------------------------------------
 
 using System;
+using System.ServiceModel.Channels;
+using System.ServiceModel;
+using System.Text;
+using static Microsoft.Samples.CustomTextMessageEncoder.CalculatorClient;
 
 namespace Microsoft.Samples.CustomTextMessageEncoder
 {
@@ -24,8 +28,13 @@ namespace Microsoft.Samples.CustomTextMessageEncoder
             Console.WriteLine("Using {0} endpoint.", configurationName);
 
             // Create a client with given client endpoint configuration
+#if NET
+            Binding binding = new CustomBinding(new CustomTextMessageBindingElement());
+            CalculatorClient client = new CalculatorClient(binding, EndpointConfiguration.CustomBinding_ICalculator);
+            
+#else
             CalculatorClient client = new CalculatorClient(configurationName);
-
+#endif
             // Call the Add service operation.
             double value1 = 100.00D;
             double value2 = 15.99D;
