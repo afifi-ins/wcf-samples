@@ -4,6 +4,7 @@
 
 using System;
 using System.ServiceModel;
+using System.ServiceModel.Channels;
 
 namespace Microsoft.Samples.ReliableSession
 {
@@ -15,7 +16,13 @@ namespace Microsoft.Samples.ReliableSession
         static void Main()
         {
             // Create a client with given client endpoint configuration
+#if NET6_0_OR_GREATER
+            Binding binding = new CustomBinding(new TextMessageEncodingBindingElement(), new HttpTransportBindingElement());
+            EndpointAddress endpointAddress = new EndpointAddress(new Uri("http://localhost/servicemodelsamples/service.svc"));
+            CalculatorClient client = new CalculatorClient(binding, endpointAddress);
+#else
             CalculatorClient client = new CalculatorClient();
+#endif
 
             // Call the Add service operation.
             double value1 = 100.00D;
