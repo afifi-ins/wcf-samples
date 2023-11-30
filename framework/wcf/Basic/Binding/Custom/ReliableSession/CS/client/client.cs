@@ -17,7 +17,7 @@ namespace Microsoft.Samples.ReliableSession
         {
             // Create a client with given client endpoint configuration
 #if NET6_0_OR_GREATER
-            Binding binding = new CustomBinding(new TextMessageEncodingBindingElement(), new HttpTransportBindingElement());
+            Binding binding = new CustomBinding(new ReliableSessionBindingElement(), new TextMessageEncodingBindingElement(), new HttpTransportBindingElement());
             EndpointAddress endpointAddress = new EndpointAddress(new Uri("http://localhost/servicemodelsamples/service.svc"));
             CalculatorClient client = new CalculatorClient(binding, endpointAddress);
 #else
