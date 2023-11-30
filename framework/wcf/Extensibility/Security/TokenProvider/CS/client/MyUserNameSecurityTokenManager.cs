@@ -11,6 +11,7 @@ namespace Microsoft.Samples.TokenProvider
     public class MyUserNameSecurityTokenManager : ClientCredentialsSecurityTokenManager
     {
         MyUserNameClientCredentials myUserNameClientCredentials;
+        private readonly string _userNameTokenType = "http://schemas.microsoft.com/ws/2006/05/identitymodel/tokens/UserName";
 
         public MyUserNameSecurityTokenManager(MyUserNameClientCredentials myUserNameClientCredentials)
             : base(myUserNameClientCredentials)
@@ -22,7 +23,7 @@ namespace Microsoft.Samples.TokenProvider
         {
             // if token requirement matches username token return custom username token provider
             // otherwise use base implementation
-            if (tokenRequirement.TokenType == SecurityTokenTypes.UserName)
+            if (tokenRequirement.TokenType == _userNameTokenType)
             {
                 return new MyUserNameTokenProvider();
             }

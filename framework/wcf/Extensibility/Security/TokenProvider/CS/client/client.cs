@@ -20,8 +20,8 @@ namespace Microsoft.Samples.TokenProvider
             CalculatorClient client = new CalculatorClient();
 
             // set new credentials
-            client.ChannelFactory.Endpoint.Behaviors.Remove(typeof(ClientCredentials));
-            client.ChannelFactory.Endpoint.Behaviors.Add(new MyUserNameClientCredentials());
+            client.ChannelFactory.Endpoint.EndpointBehaviors.Remove(typeof(ClientCredentials));
+            client.ChannelFactory.Endpoint.EndpointBehaviors.Add(new MyUserNameClientCredentials());
             /*
             Setting the CertificateValidationMode to PeerOrChainTrust means that if the certificate 
             is in the Trusted People store, then it will be trusted without performing a

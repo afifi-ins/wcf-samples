@@ -1,12 +1,11 @@
-﻿using System;
+﻿//  Copyright (c) Microsoft Corporation.  All Rights Reserved.
+
+using System;
 using System.Collections.Generic;
 using System.IdentityModel.Selectors;
 using System.IdentityModel.Tokens;
 using System.Text;
 using System.ServiceModel;
-
-//  Copyright (c) Microsoft Corporation.  All Rights Reserved.
-
 using System.ServiceModel.Security;
 using System.ServiceModel.Security.Tokens;
 
